@@ -1,0 +1,36 @@
+
+  
+def disti_char(str, n): 
+    count = [0] * 256
+    for i in range(n):
+        #print(ord(str[i]))
+        count[ord(str[i])] += 1
+      
+    max_distinct = 0
+    for i in range(256): 
+        if (count[i] != 0): 
+            max_distinct += 1    
+      
+    return max_distinct 
+  
+def smallsub(str): 
+  
+    n = len(str)    
+    max_distinct = disti_char(str, n) 
+    minl = n    
+    for i in range(n): 
+        for j in range(n): 
+            subs = str[i:j] 
+            subs_length = len(subs) 
+            sub_distinct_char = disti_char(subs,subs_length) 
+            if (subs_length < minl and max_distinct == sub_distinct_char): 
+                minl = subs_length 
+  
+    return minl 
+
+   
+if __name__ == "__main__": 
+      
+    str = "abcda"
+    l = smallsub(str); 
+    print(l) 
